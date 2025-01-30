@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger</title>
+</head>
+<body>
+    <h1>My Blogs</h1>
+    <a href="/new">Create New</a>
+    <% if (locals.data) { %>
+        <ul>
+            <% data.forEach(post => { %>
+                <li>
+                    <h2> <%= post.title %> </h2>
+                    <p> <%= post.date %> </p>
+                    <p> <%= post.content %> </p>
+                    <p> <%= post.author %> </p> 
+                    <a href="/edit/<%= post.id %>">Edit</a> | <a href="/delete/<%= post.id %>">Delete</a>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else if (locals.error) { %>
+        <h3> <% error %> </h3>
+    <% } else { %>
+        <h3>Unable to fetch the data.</h3>
+    <% } %>
+</body>
+</html>
