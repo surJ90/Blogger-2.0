@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css" type="text/css">
     <title>Blogger</title>
 </head>
 <body>
-    <h1>
-        <%= heading %>
-    </h1>
-    <% if (locals.data) { %>
-        <form action="/posts/<%= data.id %>" method="post">
-            <input type="text" name="title" id="name" value="<%= data.title %>" required>
-            <br>
-            <textarea name="content" id="content" required cols="100" rows="10">
-                <%= data.content %>
-            </textarea>
-            <br>
-            <input type="text" name="author" id="author" value="<%= data.author %>" required>
-            <br>
-            <button type="submit">
-                <%= button %>
-            </button>
-        </form>
-    <% } else { %>
-        <form action="/posts/new" method="post">
-            <input type="text" name="title" id="name" placeholder="Title" required>
-            <br>
-            <textarea name="content" id="content" required placeholder="Content" cols="100" rows="10">
-            </textarea>
-            <br>
-            <input type="text" name="author" id="author" placeholder="Author" required>
-            <br>
-            <button type="submit">
-                <%= button %>
-            </button>
-        </form>
-    <% } %>
+
+    <div class="container">
+        <h1>
+            <%= heading %>
+        </h1>
+
+
+        <% if (locals.data) { %>
+            <form action="/posts/<%= data.id %>" method="post" id="editForm">
+                <input type="text" name="title" id="name" value="<%= data.title %>" required>
+                <br>
+                <textarea name="content" id="content" required rows="10">
+                    <%= data.content %>
+                </textarea>
+                <br>
+                <input type="text" name="author" id="author" value="<%= data.author %>" required>
+                <br>
+                <button type="submit" class="full-width">
+                    <%= button %>
+                </button>
+            </form>
+        <% } else { %>
+            <form action="/posts/new" method="post" id="newPostForm">
+                <input type="text" name="title" id="name" placeholder="Title" required>
+                <br>
+                <textarea name="content" id="content" required placeholder="Content" rows="10">
+                </textarea>
+                <br>
+                <input type="text" name="author" id="author" placeholder="Author" required>
+                <br>
+                <button type="submit" class="full-width">
+                    <%= button %>
+                </button>
+            </form>
+        <% } %>
+
+    </div>
+    
 </body>
 </html>
